@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="./ubiid.css" />
+</head>
+<body>
+<div class="header">
+    <img src="ubiid-logo.svg" />
+    <h1 style="line-height: 80px">Embedded m_IDeal Showcase</h1>
+</div>
+
+<div class="input-section">
+    <label for="url">URL:</label><br>
+    <input type="text" id="url" name="url">
+    <br>
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn">Open Popup</button>
+</div>
+
+<br /><br />
+<hr />
+<div class="status-section">
+    <p><b>Result:</b></p>
+    <p>
+        <span>Scan result: </span>
+        <span id="scanResult">No status</span>
+    </p>
+    <p>
+        <span>Signing Result: </span>
+        <span id="signingResult">No signing</span>
+    </p>
+    <p>
+        <span>Signing error: </span>
+        <span id="signingError">-</span>
+    </p>
+    <p>
+        <span>Timestamp: </span>
+        <span id="ubiidStatusTime">-</span>
+    </p>
+    <p>
+        <span>statusReason: </span>
+        <span id="statusReason">-</span>
+    <p>
+        <span>statusDetails: </span>
+        <span id="statusDetails">-</span>
+    </p>
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close">&times;</span>
+        </div>
+
+        <div class="modal-body">
+            <div id="iframe-container" class="iframe-container"></div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="./demo.js"></script>
+</body>
+</html>
