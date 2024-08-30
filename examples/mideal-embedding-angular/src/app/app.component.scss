@@ -13,21 +13,6 @@ body {
     to {top:0; opacity:1}
   }
   
-  /* The Close Button */
-  .close {
-    color: black;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
   .responsive-iframe {
       top: 0;
       left: 0;
@@ -53,7 +38,7 @@ body {
   .header {
     padding-left: 50px;
     text-align: center;
-    color: #FF8200;
+    color: #422982;
   }
   
   #myBtn {
@@ -73,7 +58,7 @@ body {
     padding: 10px;
   }
   
-  #identificationUrl {
+  #startUrl {
     margin: auto;
     width: 100%;
     display: block;

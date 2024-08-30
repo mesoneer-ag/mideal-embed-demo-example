@@ -9,25 +9,25 @@ import { ModalComponent } from './modal-component/modal-component.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'test-angular-app';
+  title = 'mideal-embed';
 
-  ubiIdEndpoint: string;
+  startUrl: string;
 
   constructor(public dialog: MatDialog) {
-    this.ubiIdEndpoint = '';
+    this.startUrl = '';
   }
 
   openModal(): void {
-    this.ubiIdEndpoint = (document.getElementById('identificationUrl') as HTMLInputElement).value;
+    this.startUrl = (document.getElementById('startUrl') as HTMLInputElement).value;
     const dialogRef = this.dialog.open(ModalComponent, {
       width: '100%',
-      data: { name: 'Angular' },
+      data: { name: 'Mideal Embed' },
     });
 
     dialogRef.afterOpened().subscribe(() => {
       const mideal = new MidealEmbed();
       mideal.start({
-        ubiIdEndpoint: this.ubiIdEndpoint,
+        startUrl: this.startUrl,
         enclosingDomElement: document.getElementById('iframe-container') as HTMLElement,
         style: {
           width: '100%',
@@ -40,8 +40,8 @@ export class AppComponent {
   }
 
   handleReceivedMessage(result: any): void {
-    const messageElement = document.getElementById('ubiidStatus');
-    const messageTimeElement = document.getElementById('ubiidStatusTime');
+    const messageElement = document.getElementById('scanResult');
+    const messageTimeElement = document.getElementById('statusTime');
     const statusReasonElement = document.getElementById('statusReason');
     const statusDetailsElement = document.getElementById('statusDetails');
     const { scanResult, date, statusReason, statusDetails } = result;

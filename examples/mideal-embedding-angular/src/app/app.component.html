@@ -1,28 +1,28 @@
 <body>
   <div class="header">
-    <img src="./assets/ubiid-logo.svg" />
+    <img src="./assets/mesoneer-logo.svg" />
     <h1 style="line-height: 80px">Embedded m_IDeal Showcase</h1>
   </div>
 
   <div class="input-section">
-    <label for="identificationUrl">URL:</label><br>
-    <input type="text" id="identificationUrl" name="identificationUrl">
+    <label for="startUrl">URL:</label><br>
+    <input type="text" id="startUrl" name="startUrl">
     <br>
     <!-- Trigger/Open The Modal -->
-    <button mat-button (click)="openModal()">Open Modal</button>
+    <button id="myBtn" (click)="openModal()">Open Modal</button>
   </div>
   
   <br /><br />
   <hr />
   <div class="status-section">
-    <p><b>Identification Result:</b></p>
+    <p><b>Result:</b></p>
     <p>
-      <span>ubiidStatus: </span>
-      <span id="ubiidStatus">No status</span>
+      <span>scanResult: </span>
+      <span id="scanResult">No status</span>
     </p>
     <p>
       <span>Timestamp: </span>
-      <span id="ubiidStatusTime">-</span>
+      <span id="statusTime">-</span>
     </p>
     <p>
       <span>statusReason: </span>
