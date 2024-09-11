@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "deployUrl": "/angular/",
+            "deployUrl": "/mideal-embed-demo-example/angular/",
             "outputPath": "dist/mideal-embedding-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
