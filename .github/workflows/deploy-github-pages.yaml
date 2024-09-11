@@ -25,42 +25,32 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        project:
-          - mideal-embedding-angular
-          - mideal-embedding-on-html
-
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Node.js
-        if: matrix.project == 'mideal-embedding-angular'
         uses: actions/setup-node@v4
         with:
           node-version: '20.x'
 
       - name: Install dependencies
-        if: matrix.project == 'mideal-embedding-angular'
         run: npm ci
-        working-directory: ${{ matrix.project }}
+        working-directory: "mideal-embedding-angular"
 
       - name: Build Angular to static assets
-        if: matrix.project == 'mideal-embedding-angular'
         run: npm run build
-        working-directory: ${{ matrix.project }}
+        working-directory: "mideal-embedding-angular"
 
       - name: Copy static HTML project
-        if: matrix.project == 'mideal-embedding-on-html'
         run: |
           mkdir dist
-          mkdir -p dist/mideal-embedding-on-html
-          cp -R ./mideal-embedding-on-html ./dist/mideal-embedding-on-html
+          mkdir -p dist/html dist/angular
+          cp -R .mideal-embedding-angular/dist/ dist/angular
+          cp -R ./mideal-embedding-on-html/ dist/html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./${{ matrix.project == 'mideal-embedding-angular' && 'dist/mideal-embedding-angular' || 'dist/mideal-embedding-on-html' }}
+          publish_dir: ./dist
           publish_branch: gh-pages
-          destination_dir: ${{ matrix.project }}
