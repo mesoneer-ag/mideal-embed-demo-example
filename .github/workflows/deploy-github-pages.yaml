@@ -41,12 +41,12 @@ jobs:
         run: npm run build
         working-directory: "mideal-embedding-angular"
 
-      - name: Copy static HTML project
+      - name: Copy projects to publish directory
         run: |
           mkdir dist
           mkdir -p dist/html dist/angular
-          cp -R mideal-embedding-angular/dist/ dist/angular
-          cp -R mideal-embedding-on-html/ dist/html
+          cp -R mideal-embedding-angular/dist//mideal-embedding-angular/. dist/angular
+          cp -R mideal-embedding-on-html/. dist/html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
