@@ -55,7 +55,10 @@ jobs:
 
       - name: Copy static HTML project
         if: matrix.project == 'mideal-embedding-on-html'
-        run: cp -R ./mideal-embedding-on-html ./dist/mideal-embedding-on-html
+        run: |
+          mkdir dist
+          mkdir -p dist/mideal-embedding-on-html
+          cp -R ./mideal-embedding-on-html ./dist/mideal-embedding-on-html
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
