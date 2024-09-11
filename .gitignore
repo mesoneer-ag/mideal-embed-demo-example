@@ -5,13 +5,13 @@
 
 # Node artifact files
 node_modules/
-examples/mideal-embedding-angular/node_modules/
+mideal-embedding-angular/node_modules/
 dist/
 site/
 
 # Angular cache
 .angular/
-examples/mideal-embedding-angular/.angular/
+mideal-embedding-angular/.angular/
 
 # Compiled Java class files
 *.class
