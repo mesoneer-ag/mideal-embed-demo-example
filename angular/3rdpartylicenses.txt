@@ -60,7 +60,7 @@ THE SOFTWARE.
 @angular/platform-browser
 MIT
 
-@mesoneer-ag/mideal-embed-dev
+@mesoneer-ag/mideal-embed
 MIT
 MIT License
 
