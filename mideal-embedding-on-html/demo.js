@@ -1,4 +1,4 @@
-import MidealEmbed from 'https://cdn.jsdelivr.net/npm/@mesoneer-ag/mideal-embed-dev/dist/bundle.js'
+import MidealEmbed from 'https://cdn.jsdelivr.net/npm/@mesoneer-ag/mideal-embed/dist/bundle.js'
 
 class EmbeddedMideal {
     constructor(url) {
