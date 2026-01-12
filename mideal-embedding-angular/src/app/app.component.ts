@@ -12,9 +12,11 @@ export class AppComponent {
   title = 'mideal-embed';
 
   startUrl: string;
+  sandboxOptions: string;
 
   constructor(public dialog: MatDialog) {
     this.startUrl = '';
+    this.sandboxOptions = 'allow-scripts allow-same-origin';
   }
 
   openModal(): void {
@@ -33,10 +35,15 @@ export class AppComponent {
           width: '100%',
           height: '860px',
         },
+        sandbox: this.sandboxOptions,
         onMessage: this.handleReceivedMessage,
       });
     });
+  }
 
+  onInputSandboxOptions(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.sandboxOptions = inputElement.value;
   }
 
   handleReceivedMessage(result: any): void {

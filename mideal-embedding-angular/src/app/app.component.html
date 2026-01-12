@@ -8,6 +8,9 @@
     <label for="startUrl">URL:</label><br>
     <input type="text" id="startUrl" name="startUrl">
     <br>
+    <label for="sandboxOptions">Sandbox Options:</label><br>
+    <input (input)="onInputSandboxOptions($event)" [value]="sandboxOptions" type="text" id="sandboxOptions" name="sandboxOptions">
+    <br>
     <!-- Trigger/Open The Modal -->
     <button id="myBtn" (click)="openModal()">Open Modal</button>
   </div>
