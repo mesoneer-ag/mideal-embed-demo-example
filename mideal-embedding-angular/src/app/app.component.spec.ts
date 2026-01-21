@@ -16,16 +16,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'test-angular-app'`, () => {
+  it(`should have as title 'mideal-embedding-angular'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('test-angular-app');
+    expect(app.title).toEqual('mideal-embedding-angular');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('test-angular-app app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('mideal-embedding-angular is running!');
   });
 });
