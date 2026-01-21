@@ -35,7 +35,7 @@ export class AppComponent {
           width: '100%',
           height: '860px',
         },
-        sandbox: this.sandboxOptions,
+        // sandbox: this.sandboxOptions,
         onMessage: this.handleReceivedMessage,
       });
     });
