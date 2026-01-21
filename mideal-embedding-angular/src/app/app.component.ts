@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import MidealEmbed from '@mesoneer-ag/mideal-embed';
+import MidealEmbed from '@mesoneer-ag/mideal-embed-dev';
 import { ModalComponent } from './modal-component/modal-component.component';
 
 @Component({
