@@ -9,6 +9,9 @@ mideal-embedding-angular/node_modules/
 dist/
 site/
 
+# Locally built SDK bundle copied via `npm run vendor:sdk`
+mideal-embedding-on-html/vendor/
+
 # Angular cache
 .angular/
 mideal-embedding-angular/.angular/

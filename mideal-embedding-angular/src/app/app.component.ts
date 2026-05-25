@@ -11,6 +11,8 @@ import { ModalComponent } from './modal-component/modal-component.component';
 export class AppComponent {
   title = 'mideal-embed';
 
+  static readonly INITIAL_IFRAME_HEIGHT_PX = 860;
+
   startUrl: string;
   sandboxOptions: string;
 
@@ -27,16 +29,25 @@ export class AppComponent {
     });
 
     dialogRef.afterOpened().subscribe(() => {
+      const enclosing = document.getElementById('iframe-container') as HTMLElement;
       const mideal = new MidealEmbed();
       mideal.start({
         startUrl: this.startUrl,
-        enclosingDomElement: document.getElementById('iframe-container') as HTMLElement,
+        enclosingDomElement: enclosing,
         style: {
           width: '100%',
-          height: '860px',
+          height: AppComponent.INITIAL_IFRAME_HEIGHT_PX + 'px',
         },
         sandbox: this.sandboxOptions,
         onMessage: this.handleReceivedMessage,
+        onHeightChange: (height: number) => {
+          const target = Math.max(height, AppComponent.INITIAL_IFRAME_HEIGHT_PX);
+          const iframe = enclosing.querySelector('iframe');
+          if (iframe) {
+            iframe.style.height = target + 'px';
+            iframe.setAttribute('height', target + 'px');
+          }
+        },
       });
     });
   }

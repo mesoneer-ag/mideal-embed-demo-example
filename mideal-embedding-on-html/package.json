@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "servor --reload"
+    "start": "servor --reload",
+    "vendor:sdk": "mkdir -p vendor && cp mideal-embed-sdk/dist/bundle.js vendor/mideal-embed.bundle.js"
   },
   "dependencies": {
     "servor": "^4.0.2"
