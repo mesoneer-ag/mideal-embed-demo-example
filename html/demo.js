@@ -1,4 +1,4 @@
-import MidealEmbed from 'https://cdn.jsdelivr.net/npm/@mesoneer-ag/mideal-embed/dist/bundle.js'
+import MidealEmbed from 'https://cdn.jsdelivr.net/npm/@mesoneer-ag/mideal-embed-dev@1.2.0-beta.0/dist/bundle.js'
 
 class EmbeddedMideal {
     constructor(url) {
@@ -6,22 +6,13 @@ class EmbeddedMideal {
     }
 
     onInit() {
-        // Get the HTML DOM element that we want to inject m_IDeal iframe into
         const iframeContainer = document.getElementById('iframe-container');
-
-        // Get the modal
         const modal = document.getElementById('myModal');
-
-        // Get the button that opens the modal
         const btn = document.getElementById('myBtn');
-
-        // Get the <span> element that closes the modal
         const span = document.getElementsByClassName('close')[0];
+        const autoResizeCheckbox = document.getElementById('autoResize');
+        const lastHeightEl = document.getElementById('lastHeight');
 
-        /**
-         * This is the function to receive the identification status and handle it.
-         * In this example we will simply print the value into the GUI
-         */
         const handleReceivedMessage = (result) => {
             const messageElement = document.getElementById('scanResult');
             const signingResultElement = document.getElementById('signingResult');
@@ -45,36 +36,48 @@ class EmbeddedMideal {
             statusDetailsElement.innerHTML = statusDetails ?? '';
         };
 
-        // When the user clicks the button, open the modal
+        const INITIAL_IFRAME_HEIGHT_PX = 850;
+
+        const handleHeightChange = (height) => {
+            lastHeightEl.innerText = height + 'px';
+        };
+
         let startUrl = this.url;
         btn.onclick = function() {
             modal.style.display = 'block';
             startUrl = document.getElementById('url').value;
-            /**
-             * the start() function takes in 4 arguments
-             * startUrl: the url returned from the public m_IDeal API to create scheduled case
-             * enclosingDomElement: the HTML DOM element on your page that you want to inject m_IDeal frame into
-             * style: the style of the injected m_IDeal iframe, currently only support to set width and height
-             * onMessage: the function to receive identification status.
-             */
+
             const midealEmbed = new MidealEmbed();
-            midealEmbed.start({
+            const options = {
                 startUrl: startUrl,
                 enclosingDomElement: iframeContainer,
                 style: {
                     width: '100%',
-                    height: '860px',
+                    height: INITIAL_IFRAME_HEIGHT_PX + 'px',
                 },
                 onMessage: handleReceivedMessage,
-            });
+                onHeightChange: (height) => {
+                    handleHeightChange(height);
+                    if (!autoResizeCheckbox.checked) return;
+                    // Demo policy: iframe tracks content height but never shrinks below
+                    // the initial allocation. Tall pages grow; short pages render at
+                    // the floor (no whitespace because the embedded app fills 850 via
+                    // its own min-height). Tall→short navigation shrinks back to 850.
+                    const target = Math.max(height, INITIAL_IFRAME_HEIGHT_PX);
+                    const iframe = iframeContainer.querySelector('iframe');
+                    if (iframe) {
+                        iframe.style.height = target + 'px';
+                        iframe.setAttribute('height', target + 'px');
+                    }
+                },
+            };
+            midealEmbed.start(options);
         };
 
-        // When the user clicks on <span> (X), close the modal
         span.onclick = function() {
             closePopup();
         };
 
-        // When the user clicks anywhere outside the modal, close it
         window.onclick = function(event) {
             if (event.target == modal) {
                 closePopup();
@@ -87,8 +90,6 @@ class EmbeddedMideal {
     }
 }
 
-// Assuming the URL is the returned from the m_IDeal public API for creating scheduled case
-// const startUrl = 'https://ubiid.ubitec.io/scan/start?tenantid=4e72ef40-00e6-411c-a44f-47af05109bcd&language=de';
 const startUrl = document.getElementById("url").value;
 const mideal = new EmbeddedMideal(startUrl);
 mideal.onInit();
