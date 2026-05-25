@@ -12,7 +12,12 @@
 
 <div class="input-section">
     <label for="url">URL:</label><br>
-    <input type="text" id="url" name="url">
+    <input type="text" id="url" name="url" size="80">
+    <br>
+    <label>
+        <input type="checkbox" id="autoResize" checked>
+        Auto resize iframe (demo policy: max of content height and initial height)
+    </label>
     <br>
     <!-- Trigger/Open The Modal -->
     <button id="myBtn">Open Popup</button>
@@ -44,6 +49,10 @@
     <p>
         <span>statusDetails: </span>
         <span id="statusDetails">-</span>
+    </p>
+    <p>
+        <span>Last iframe height (dtp-iframe-height): </span>
+        <span id="lastHeight">-</span>
     </p>
 </div>
 
